@@ -1,4 +1,8 @@
 package com.fullstackproject.ecommerce.Repository;
 
-public interface CategoryRepository {
+import com.fullstackproject.ecommerce.Model.Category;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface CategoryRepository extends MongoRepository<Category, ObjectId> {
 }
