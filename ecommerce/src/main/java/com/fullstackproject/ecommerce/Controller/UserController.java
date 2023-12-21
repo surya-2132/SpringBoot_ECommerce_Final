@@ -29,10 +29,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping(value = "/registration")
-    public String getSignUp(String userName, String email, String password1, String password2 ){
-        return userService.signUp(userName, email, password1, password2);
-    }
+//    @PostMapping(value = "/registration")
+//    public String getSignUp(String userName, String email, String password1, String password2 ){
+//        return userService.signUp(userName, email, password1, password2);
+//    }
 
     @PostMapping("/registration")
     public ResponseEntity<String> signup(@RequestBody Map<String, String> requestMap) {
