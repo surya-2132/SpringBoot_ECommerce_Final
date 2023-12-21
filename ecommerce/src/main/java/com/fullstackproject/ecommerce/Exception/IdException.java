@@ -10,5 +10,4 @@ public class IdException extends Exception{
         super(exceptionName);    //To get/print message from parent Exception class to derived class of custom exception
         this.exceptionName = exceptionName;
     }
-
 }
