@@ -17,11 +17,12 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    @Autowired
+    public ProductService(ProductRepository productRepository,CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     //create and add new product
@@ -30,11 +31,11 @@ public class ProductService {
     }
 
     public Product getProductById(ObjectId id) throws ProductException {
-        Product product = (Product) productRepository.findByID(id);
-        if (product.getId() ==  null){
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isEmpty()){
             throw new ProductException("Product Not Found");
         }
-        return product;
+        return  optionalProduct.get();
     }
 
     //get the product by any field entered by the user

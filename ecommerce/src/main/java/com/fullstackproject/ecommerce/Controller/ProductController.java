@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping("/get-productby-id/{id}")
-    public Product getProductById(@PathVariable("id") ObjectId id) throws ProductException{
-        return productService.getProductById(id);
+    public Product getProductById(@PathVariable("id") String id) throws ProductException{
+        return productService.getProductById(new ObjectId(id));
     }
 
     @PostMapping("/get")

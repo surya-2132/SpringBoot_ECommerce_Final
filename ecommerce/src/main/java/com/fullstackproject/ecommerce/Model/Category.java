@@ -18,4 +18,13 @@ public class Category {
     private ObjectId id;
     private String name;
     private String description;
+
+    @Override
+    public String toString() {
+        return " \"data\" :{" +
+                "\"id\":"+id +","+
+                "\"name\":" + name + "," +
+                "\"description\":" + description +
+                "}";
+    }
 }
