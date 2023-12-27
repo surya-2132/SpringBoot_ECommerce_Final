@@ -58,7 +58,7 @@ public class CategoryControllerTest {
     }
 
     @Test
-    public void verfiySaveCategory_EXCEPTION() throws Exception, IdException {
+    public void verifySaveCategory_EXCEPTION() throws Exception, IdException {
         Category category = new Category(new ObjectId("658437c389407d3fe6f26c28"), "category1", "testing");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/category/add-category")
@@ -66,24 +66,24 @@ public class CategoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                 )
-//                .andExpect(jsonPath("$.message").value("Category did not created"))
-//                .andExpect(jsonPath("$.errorCode").value(400))
+                .andExpect(jsonPath("$.errorMsg").value("Category did not created"))
+                .andExpect(jsonPath("$.errorCode").value(400))
                 .andDo(print());
     }
 
     @Test
     public void verifyUpdateCategory() throws Exception{
-        Category category = new Category(new ObjectId("6584380f3c44b0778fc13e9c"), "category2", "testing");
+        Category category = new Category(new ObjectId("658437c389407d3fe6f26c28"), "category0", "testing");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/category/update")
+        mockMvc.perform(MockMvcRequestBuilders.post("/category/update/658437c389407d3fe6f26c28")
                         .content(asJson(category))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.id").value("6584380f3c44b0778fc13e9c"))
-                .andExpect(jsonPath("$.name").value("category2"))
-                .andExpect(jsonPath("$.description").value("testing"))
+                .andExpect(jsonPath("$.data.id").exists())
+                .andExpect(jsonPath("$.data.id").value("658437c389407d3fe6f26c28"))
+                .andExpect(jsonPath("$.data.name").value("category0"))
+                .andExpect(jsonPath("$.data.description").value("testing"))
                 .andDo(print());
     }
 

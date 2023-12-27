@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/category")
@@ -35,9 +36,9 @@ public class CategoryController {
         return categoryService.getCategoryByID(id);
     }
 
-    @PostMapping("/get/{field}")  //@GetMapping("/get-category/{field}")
-    public List<Category> getCategoryByField(@PathVariable("field") String field,@RequestBody String value)throws CategoryException{
-        return categoryService.getCategoryByField(field, value);
+    @PostMapping("/get")  //@GetMapping("/get-category/{field}")
+    public List<Category> getCategoryByField(@RequestBody Map<String, Object> map)throws CategoryException{
+        return categoryService.getCategoryByField(map.get("field").toString(),map.get("value").toString());
     }
 
     @GetMapping("/get-all-categories")

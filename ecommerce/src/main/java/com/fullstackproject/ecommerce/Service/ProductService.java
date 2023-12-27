@@ -64,29 +64,30 @@ public class ProductService {
     }
 
     public String updateProduct(String id, Product product) throws ProductException {
-        ObjectId objectId = new ObjectId();
-        Product existingProduct = (Product) productRepository.findByID(objectId);
+        ObjectId objectId = new ObjectId(id);
+        Optional<Product> productList = productRepository.findById(objectId);
 
         //if product didn't exist
-        if(existingProduct.getId() == null){
-            throw new ProductException("Product ID not found, couldn't update");
+        if (productList.isEmpty()){
+            throw new ProductException("Product ID not found or Empty Product couldn't update");
         }
 
+        Product updateProduct = productList.get();
         //if product exist
         if(product.getName() != null){
-            existingProduct.setName(product.getName());
+            updateProduct.setName(product.getName());
         }if(product.getDescription() != null){
-            existingProduct.setDescription(product.getDescription());
+            updateProduct.setDescription(product.getDescription());
         }if(product.getPrice() != 0){
-            existingProduct.setPrice(product.getPrice());
+            updateProduct.setPrice(product.getPrice());
         }if(product.getCategory() != null){
-            existingProduct.setCategory(product.getCategory());
+            updateProduct.setCategory(product.getCategory());
         }
 
-        productRepository.save(existingProduct);
+        productRepository.save(updateProduct);
         return "{" +
-                "\"message\":"+"Successfully updated product\",\n"+
-                "\"data\":"+ existingProduct +",\n"+
+                "\"message\":"+"\"Successfully updated product\" ,"+
+                 updateProduct +
                 "}";
     }
 

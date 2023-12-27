@@ -43,4 +43,5 @@ public class RestExceptionHandler {
         errorResponse.setErrorMsg("Incorrect Syntax, please check once again...");
         return new ResponseEntity<ErrorResponse>(errorResponse,HttpStatus.BAD_REQUEST);
     }
+
 }

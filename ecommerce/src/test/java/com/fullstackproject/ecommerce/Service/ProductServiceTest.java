@@ -39,7 +39,7 @@ public class ProductServiceTest {
     @Test
     public void getAllProducts() {
         List<Product> productList = new ArrayList<Product>();
-        productList.add(new Product(new ObjectId("658035a8f431076e8e80b08a"), "Heritage", "milk", 20));
+        productList.add(new Product(new ObjectId("658ad8935bc2e20faf08762b"), "iphone", "premium", 20));
         productList.add(new Product(new ObjectId("6580241b9c0efe21967a4917"), "Ariel", "detergent", 30));
         productList.add(new Product(new ObjectId("6580189a55cec04f3cdf3d4d"), "Vim", "dishwasher", 40));
 

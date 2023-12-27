@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     @PostMapping("/get")
-    public List<Product> getProductByField(@RequestBody Map<String, ObjectId> map) throws ProductException{
+    public List<Product> getProductByField(@RequestBody Map<String, Object> map) throws ProductException{
         return productService.getProductByField(map.get("field").toString(),map.get("value").toString());
     }
 
@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{id}") //@PutMapping("/update/{id}")
-    public String updateProduct(@PathVariable("id") String id,@RequestBody Product product) throws ProductException{
+    public String updateProduct(@PathVariable("id") String id, @RequestBody Product product) throws ProductException{
         return productService.updateProduct(id, product);
     }
 
